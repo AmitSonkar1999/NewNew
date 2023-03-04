@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+             <th>ID</th>
+            <th>name</th>
+            <th>country</th>
+            <th>logo</th>
+            <th>Slogan</th>
+            <th>Quater</th>
+            <th>Website</th>
+            <th>Established</th>
+            </tr>
+        </thead>
+        <tbody id="tab"></tbody>
+    </table>
+    
+    
+</body>
+<script>
+    var rr=[];
+   $.ajax({
+    type: "get",
+    url: "https://api.instantwebtools.net/v1/airlines",
+
+    
+    dataType: "json",
+    success: function(res) {
+    
+    //var as =JSON.parse(res);
+   // console.log(as);
+   // $("#demo").append(as);
+    res.forEach(element => {
+        //console.log(element)
+    });
+    
+
+    //$("#demo").append(JSON.stringify(rr));
+    
+     var data=res.filter(fun);
+    // document.getElementById("demo").innerHTML=data;
+     function fun(value,index){
+         return value.country=="India"||value.country=="india";
+     }
+     var html="";
+     data.forEach(function(currentValue, index, arr){
+        //$("#demo").append(currentValue);
+ html +=`<tr>
+    <td>${arr[index].id}</td>
+    <td>${arr[index].name}</td>
+    <td>${arr[index].country}</td>
+    <td>${arr[index].logo}</td>
+    <td>${arr[index].Slogan}</td>
+    <td>${arr[index].head_quarter}</td>
+    <td>${arr[index].website}</td>
+    <td>${arr[index].establish}</td>
+    <tr>`;
+
+        // $("#tab").append(JSON.stringify(currentValue));
+        console.log(arr.length);
+     })
+     $("#tab").append(html);
+        
+    //console.log(arr.length); 
+    }
+    
+   
+    
+})
+
+// var data=rr.filter(myfun);
+//     document.getElementById("demo").innerHTML = Data;
+//     function myfun(value,index,array){
+//         return value;
+//     }
+</script>
+</html>
